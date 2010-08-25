@@ -1,0 +1,6 @@
+SVN_SSH="ssh -l svnuser -p 5022" svn checkout svn+ssh://mwgaa.com/usr/local/src/svnrepos/hrng/trunk/gumstix-rng
+
+svn add gumstix-rng/*
+
+SVN_SSH="ssh -l svnuser -p 5022" svn commit gumstix-rng
+

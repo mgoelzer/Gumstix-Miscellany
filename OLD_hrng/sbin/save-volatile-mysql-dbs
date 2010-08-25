@@ -1,0 +1,20 @@
+#!/bin/sh
+
+#
+# Do this EVERY FEW MINUTES so we always have a recent backup after power loss
+#
+BZ2TARGET=/var/mysql/rand_nonvol/rand_volatile_dump.sql.bz2
+#DT=`date "+%Y%m%dT%H.%M.%S"`
+if test -f $BZ2TARGET.3 ; then
+	rm -f $BZ2TARGET.3
+fi
+if test -f $BZ2TARGET.2 ; then
+	mv -f $BZ2TARGET.2 $BZ2TARGET.3
+fi
+if test -f $BZ2TARGET.1 ; then
+	mv $BZ2TARGET.1 $BZ2TARGET.2
+fi
+if test -f $BZ2TARGET ; then
+	mv $BZ2TARGET $BZ2TARGET.1
+fi
+/usr/bin/mysqldump rand_volatile | /usr/bin/bzip2 --stdout > $BZ2TARGET

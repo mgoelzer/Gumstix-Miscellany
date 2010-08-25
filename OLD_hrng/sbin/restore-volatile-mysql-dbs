@@ -1,0 +1,23 @@
+#!/bin/sh
+
+#
+# Do this at STARTUP (once only)
+#
+
+# Remake the directory (symlink target)
+if ! test -d /dev/shm/rand_volatile ; then
+	mkdir /dev/shm/rand_volatile
+fi
+chown -R mysql /dev/shm/rand_volatile
+chmod 2700 /dev/shm/rand_volatile
+cp /var/mysql/rand_nonvol/db.opt /var/mysql/rand_volatile/
+
+# Restore database schema/data
+BZ2DUMP=/var/mysql/rand_nonvol/rand_volatile_dump.sql.bz2
+if test -f $BZ2DUMP ; then
+	# import previously dumped db
+	cat $BZ2DUMP | bzcat | mysql rand_volatile
+else
+	# can only import fixed table structure
+	cat volatile_schemas.sql | mysql rand_volatile
+fi

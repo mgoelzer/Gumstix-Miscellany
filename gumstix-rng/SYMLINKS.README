@@ -1,0 +1,7 @@
+Need these symlinks:
+
+ln -s  /home/root/gumstix-rng/etc-initd-scripts/geiger-collect-daemon /etc/init.d/geiger-collect-daemon
+ln -s  /home/root/gumstix-rng/htdocs/index.html /usr/share/apache2/htdocs/index.html
+ln -s  /home/root/gumstix-rng/htdocs/cgi-bin/random-cgi.py /usr/share/apache2/cgi-bin/random-cgi.py
+ln -s  /home/root/gumstix-rng/htdocs/cgi-bin/statistics.py /usr/share/apache2/cgi-bin/statistics.py
+
