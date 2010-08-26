@@ -1,0 +1,7 @@
+On dev machine with OE set up and so forth:
+
+	export KERNEL_CROSS_BUILD_ENVIRONMENT_SOURCED=
+	source overo-source-me
+	make
+
+There's no bitbake recipe yet; you just manually copy the make'd output file (qrandom.o) to the 'stix and use insmod to load it.
